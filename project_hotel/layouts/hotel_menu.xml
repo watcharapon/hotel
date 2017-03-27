@@ -1,0 +1,7 @@
+<menu string="Hotel">
+    <item string="Hotel ticket" action="hotel_ticket"/>
+    <item string="settings">
+        <item string="Hotel" action="hotel"/>
+        <item string="Room number" action="roomnumber"/>
+    </item>
+</menu>

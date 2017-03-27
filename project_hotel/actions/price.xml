@@ -1,0 +1,7 @@
+<action>
+    <field name="string">Price</field>
+    <field name="view_cls">multi_view</field>
+    <field name="model">price</field>
+    <field name="modes">list,form</field>
+    <field name="menu">hotel_menu</field>
+</action>

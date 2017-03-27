@@ -1,0 +1,32 @@
+<inherit model="contact" inherit="contact_form">
+
+
+    <field name="website" position="after">
+        <field name="itile"/>
+    </field>
+
+
+    <tab string="Accounting" position="replace"/>
+    <tab string="Other" position="replace"/>
+    <tab string="Services" position="replace"/>
+    <tab string="Purchasing" position="replace"/>
+    <tab string="Sales" position="replace"/>
+    <tab string="Inventory" position="replace"/>
+    <separator string="Additional Information" position="replace"/>
+    <field name="categ_id" position="replace"/>
+    <field name="groups" position="replace"/>
+    <field name="industry_id" position="replace"/>
+    <field name="country_id" position="replace"/>
+    <field name="region_id" position="replace"/>
+    <field name="revenue" position="replace"/>
+    <field name="employees" position="replace"/>
+    <field name="business_area_id" position="replace"/>
+    <field name="fleet_size_id" position="replace"/>
+    <field name="description" position="replace"/>
+    <separator string="Business Relationship" position="replace"/>
+    <field name="customer" position="replace"/>
+    <field name="supplier" position="replace"/>
+    <field name="lead_source" position="replace"/>
+    <field name="inquiry_type" position="replace"/>
+
+</inherit>

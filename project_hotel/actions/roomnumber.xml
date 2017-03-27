@@ -1,0 +1,7 @@
+<action>
+    <field name="string">Room Number</field>
+    <field name="view_cls">multi_view</field>
+    <field name="model">roomnumber</field>
+    <field name="modes">list,form</field>
+    <field name="menu">hotel_menu</field>
+</action>

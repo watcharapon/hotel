@@ -1,0 +1,15 @@
+<form model="hotel">
+    <separator string="Hotel"/>
+    <group span="6" columns="1">
+        <field name="hotel"/>
+        <field name="lines">
+            <list>
+                <field name="room_number"/>
+                <field name="bed"/>
+                <field name="bedroom"/>
+                <field name="price"/>
+            </list>
+        </field>
+    </group>
+</form>
+

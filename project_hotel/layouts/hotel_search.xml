@@ -1,0 +1,10 @@
+<search model="hotel.pro">
+    <field name="status_room"/>
+    <field name="name_hotel"/>
+    <field name="no_guest"/>
+    <field name="bed"/>
+    <field name="bedroom"/>
+    <field name="breakfast"/>
+    <field name="price"/>
+    <field name="room_number"/>
+</search>

@@ -1,0 +1,7 @@
+<form model="price">
+    <separator string="Price"/>
+    <group span="6" columns="1">
+        <field name="price"/>
+    </group>
+</form>
+

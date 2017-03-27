@@ -1,0 +1,7 @@
+<form model="bedroom">
+    <separator string="Bedroom"/>
+    <group span="6" columns="1">
+        <field name="bedroom"/>
+    </group>
+</form>
+

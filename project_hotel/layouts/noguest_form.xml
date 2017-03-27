@@ -1,0 +1,7 @@
+<form model="noguest">
+    <separator string="No. guest"/>
+    <group span="6" columns="1">
+        <field name="no_guest"/>
+    </group>
+</form>
+

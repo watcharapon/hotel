@@ -1,0 +1,22 @@
+<form model="hotel.ticket">
+    <head>
+        <field name="state"/>
+        <button string="Print" icon="print" action="report_hotel_form"/>
+    </head>
+    <separator string="hotel Ticket"/>
+    <group form_layout="stacked">
+        <field name="contact_id" span="2"/>
+        <field name="date_from" span="2" onchange="update_date"/>
+        <field name="date_to"  span="2" onchange="update_date"/>
+        <newline/>
+        <field name="hotel_id" span="2" condition='[["id","in",hotel_ids]]' onchange="onchange_hotel"/>
+        <field name="room_number" span="2" onchange="onchange_hotel"/>
+        <field name="bed" span="2" onchange="onchange_hotel"/>
+        <field name="price" span="2"/>
+        <field name="hotel_ids" span="2"/>
+    </group>
+    <foot>
+        <button string="Confirm" method="confirm"/>
+    </foot>
+</form>
+

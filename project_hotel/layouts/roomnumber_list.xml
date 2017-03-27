@@ -1,0 +1,3 @@
+<list model="roomnumber">
+    <field name="room_number"/>
+</list>

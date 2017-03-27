@@ -1,0 +1,7 @@
+<action>
+    <field name="string">No guest</field>
+    <field name="view_cls">multi_view</field>
+    <field name="model">noguest</field>
+    <field name="modes">list,form</field>
+    <field name="menu">hotel_menu</field>
+</action>

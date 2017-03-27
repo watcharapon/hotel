@@ -1,0 +1,6 @@
+<list model="hotel.ticket">
+    <field name="date_from"/>
+    <field name="date_to"/>
+    <field name="hotel_id"/>
+    <field name="state"/>
+</list>

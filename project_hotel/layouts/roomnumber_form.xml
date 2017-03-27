@@ -1,0 +1,8 @@
+<form model="roomnumber">
+    <separator string="Room number"/>
+    <group span="6" columns="1">
+        <field name="number"/>
+        <field name="room_number"/>
+    </group>
+</form>
+
