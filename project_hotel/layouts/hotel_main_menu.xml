@@ -1,5 +1,5 @@
 <inherit inherit="main_menu">
     <item string="Contacts" position="before">
-        <item string="hotel" action="hotel"/>
+        <item string="hotel" action="hotel_ticket"/>
     </item>
 </inherit>

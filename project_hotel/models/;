@@ -5,10 +5,10 @@ class Hotelticket(Model):
     _name = "hotel.ticket"
     _string = "Hotel Ticket"
     _fields ={
-        "check_in" : fields.Date("Check in"),
-        "check_out" : fields.Date("Date To"),
+        "date_from" : fields.Date("Date From"),
+        "date_to" : fields.Date("Date To"),
         "hotel_id" : fields.Many2One("hotel","Hotel ID", required=True, search=True),
-        "room_id" : fields.Many2One("roomnumber","Room No."),
+        "room_number" : fields.Many2One("roomnumber","Room No."),
         "price" : fields.Decimal("Pribe", required=True, search=True),
         "bed": fields.Selection([["double", "Double"], ["single", "Single"]], "Bed", required=True, search=True),
         "hotel_ids": fields.Char("Hotel IDS"),
@@ -19,19 +19,19 @@ class Hotelticket(Model):
 
     _defaults = {
         "state":"draft",
-        "check_in": lambda *a: time.strftime("%Y-%m-%d"),
+        "date_from": lambda *a: time.strftime("%Y-%m-%d"),
     }
 
     def update_date(self,context={}):
         data = context['data']
         hotel_ids = get_model("hotel").search([]) or None
-        if data.get('check_in') and data.get('check_out'):
-            for ticket in self.search_browse([["check_in","<=",data['check_in']],["state","!=","draft"]]):
-                if ticket.check_out <= data["check_in"]: continue
+        if data.get('date_from') and data.get('date_to'):
+            for ticket in self.search_browse([["date_from","<=",data['date_from']],["state","!=","draft"]]):
+                if ticket.date_to <= data["date_from"]: continue
                 if ticket.hotel_id.id in hotel_ids:
                     hotel_ids.remove(ticket.hotel_id.id)
-            for ticket in self.search_browse([["check_in",">",data['check_in']],["state","!=","draft"]]):
-                if data["check_out"] <= ticket.check_in: continue
+            for ticket in self.search_browse([["date_from",">",data['date_from']],["state","!=","draft"]]):
+                if data["date_to"] <= ticket.date_from: continue
                 if ticket.hotel_id.id in hotel_ids:
                     hotel_ids.remove(ticket.hotel_id.id)
         data["hotel_ids"] = hotel_ids
@@ -39,34 +39,30 @@ class Hotelticket(Model):
 
     def confirm(self,ids,context={}):
         self.write(ids,{"state":"confirm"})
-        obj = self.browse(ids)[0]
         return {
             "next" : {
-                "name": "hotel_ticket",
-                "mode": "form",
-                "active_id": obj.id,
+                "tpye": "reload",
             },
-            "flash": "Confirm",
         }
 
     def onchange_hotel(self,context={}):
         data = context['data']
         if data.get("hotel_id"):
             hotel = get_model("hotel").browse(data["hotel_id"])
-            if data.get("room_id"):
+            if data.get("room_number"):
                 for line in hotel.lines:
                     if not line.room_number: continue
-                    if line.room_number.id == data["room_id"] and line.bed == data["bed"]:
+                    if line.room_number.id == data["room_number"] and line.bed == data["bed"]:
                         data["price"] = line.price or 0
         return data
 
 
-    def copy(self, ids, context):
+   def copy(self, ids, context):
         obj = self.browse(ids)[0]
         vals = {
             "contact_id": obj.contact_id.id,
-            "check_in": obj.check_in,
-            "check_out": obj.check_out,
+            "date_from": obj.date_from,
+            "date_to": obj.date_to,
             "hotel_id": obj.hotel_id.id,
             "bed": obj.bed,
             "price": obj.price,
@@ -76,10 +72,11 @@ class Hotelticket(Model):
         new_obj = self.browse(new_id)
         return {
             "next": {
-                "name": "hotel_ticket",
+                "name": "sale",
                 "mode": "form",
                 "active_id": new_id,
             },
-            "flash": "copy success",
+            "flash": "Sales order %s copied to %s" % (obj.number, new_obj.number),
+            "sale_id": new_id,
         }
 Hotelticket.register()
