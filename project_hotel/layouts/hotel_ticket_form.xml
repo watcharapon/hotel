@@ -1,7 +1,9 @@
 <form model="hotel.ticket">
     <head>
         <field name="state"/>
-        <button string="Print" icon="print" action="report_hotel_form"/>
+        <button string="Print Direct" icon="print" action="print_hotel"/>
+        <button string="Print Custom Data" icon="print" action="print_hotel_custom"/>
+        <button string="Print Template" icon="print" action="report_hotel_form"/>
         <button string="Copy" icon="copy" method="copy"/>
     </head>
     <separator string="hotel Ticket"/>
@@ -15,9 +17,17 @@
         <field name="bed" span="2" onchange="onchange_hotel"/>
         <field name="price" span="2"/>
         <field name="hotel_ids" span="2"/>
+        <field name="lines" nolabel="1">
+            <list>
+                <field name="product_id"/>
+                <field name="qty"/>
+                <field name="unit_price"/>
+                <field name="amount"/>
+            </list>
+        </field>
     </group>
     <foot>
-        <button string="Confirm" method="confirm"/>
+        <button string="Confirm" method="confirm" states="draft"/>
     </foot>
 </form>
 

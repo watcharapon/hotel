@@ -1,3 +1,4 @@
+from pprint import pprint
 from netforce.model import Model, fields, get_model
 import time
 
@@ -15,12 +16,39 @@ class Hotelticket(Model):
         "state": fields.Selection([["draft","Draft"],
                                    ["confirm","Confirmed"]], "Status", required=True),
         "contact_id": fields.Many2One("contact","Contact",required=True),
+        'lines': fields.One2Many("hotel.ticket.line","ticket_id","Lines"),
         }
 
     _defaults = {
         "state":"draft",
         "check_in": lambda *a: time.strftime("%Y-%m-%d"),
     }
+
+    def get_report_data(self,ids,context={}):
+        res=super().get_report_data(ids,context)
+        print("xxxxxxxxxxxxxxxxxxxxxx")
+        return res
+
+    def get_report_data_custom(self,ids,context={}):
+        pages=[]
+        for index, obj in enumerate(self.browse(ids)):
+            page_vals={
+                'number': 'simple_number%s'%(index),
+                'lines': [], #each
+            }
+            for i in range(10):
+                page_vals['lines'].append({
+                    'qty': i,
+                })
+            pages.append(page_vals)
+
+        print("="*30)
+        pprint(pages)
+        print("="*30)
+        data={
+            'pages': pages,
+        }
+        return data
 
     def update_date(self,context={}):
         data = context['data']
@@ -59,7 +87,6 @@ class Hotelticket(Model):
                     if line.room_number.id == data["room_id"] and line.bed == data["bed"]:
                         data["price"] = line.price or 0
         return data
-
 
     def copy(self, ids, context):
         obj = self.browse(ids)[0]

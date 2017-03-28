@@ -1,4 +1,10 @@
 <list model="hotel.ticket">
+    <top>
+    </top>
+    <head>
+        <button string="Print" icon="print" action="report_hotel_form"/>
+        <button string="Print Custom Data" icon="print" action="print_hotel_custom"/>
+    </head>
     <field name="check_in"/>
     <field name="check_out"/>
     <field name="hotel_id"/>

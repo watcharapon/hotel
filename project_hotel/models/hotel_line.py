@@ -9,8 +9,8 @@ class HotelLine(Model):
         "room_number" : fields.Many2One("roomnumber","Room No."),
         "bed": fields.Selection([["double", "Double"], ["single", "Single"]], "Bed", required=True, search=True),
         "bedroom": fields.Selection([["singlebeddedRoom", "Single bedded room"], ["twinbeddedroom", "Twin Bedded Room"], ["doublebeddedroom", "Double Bedded Room"]], "Bedroom", required=True, search=True),
-        "breakfast": fields.Selection([["havebreakfast", "Have brekfast"], ["nobrekfast", "No brekfast"]], "Breakfast", required=True),
-        "price" : fields.Decimal("Prive", required=True, search=True),
+        "breakfast": fields.Selection([["havebreakfast", "Have brekfast"], ["nobrekfast", "No brekfast"]], "Breakfast", required=False),
+        "price" : fields.Decimal("Price", required=True, search=True),
         #"location" : fields.Text("Location", search=True),
         #"status_room": fields.Selection([["emptyroom", "Empty room"], ["romnotbusy", "Room not busy"]], "status room", required=True, search=True),
         }

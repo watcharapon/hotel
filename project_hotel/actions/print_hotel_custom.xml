@@ -1,0 +1,6 @@
+<action>
+    <field name="type">report_odt2</field>
+    <field name="model">hotel.ticket</field>
+    <field name="template">ticket_custom</field>
+    <field name="method">get_report_data_custom</field>
+</action>

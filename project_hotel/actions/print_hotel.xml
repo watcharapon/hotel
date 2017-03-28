@@ -1,0 +1,6 @@
+<action>
+    <field name="type">report_odt2</field>
+    <field name="model">hotel.ticket</field>
+    <field name="template">ticket</field>
+    <!--<field name="model">get_report_data</field>-->
+</action>

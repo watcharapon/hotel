@@ -2,7 +2,7 @@
     <separator string="Hotel"/>
     <group span="6" columns="1">
         <field name="hotel"/>
-        <field name="lines">
+        <field name="lines" nolabel="1">
             <list>
                 <field name="room_number"/>
                 <field name="bed"/>
